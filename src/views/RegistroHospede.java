@@ -7,6 +7,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import java.awt.Color;
 import com.toedter.calendar.JDateChooser;
+
+import controller.HospedeController;
+import model.Hospede;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
@@ -19,6 +23,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.sql.Date;
 import java.text.Format;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
@@ -29,15 +34,17 @@ import javax.swing.JSeparator;
 public class RegistroHospede extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtNome;
-	private JTextField txtSobrenome;
-	private JTextField txtTelefone;
-	private JTextField txtNreserva;
-	private JDateChooser txtDataN;
-	private JComboBox<Format> txtNacionalidade;
+	private static JTextField txtNome;
+	private static JTextField txtSobrenome;
+	private static JTextField txtTelefone;
+	private static JTextField txtNreserva;
+	private static JDateChooser txtDataN;
+	private static JComboBox<Format> txtNacionalidade;
 	private JLabel labelExit;
 	private JLabel labelAtras;
 	int xMouse, yMouse;
+	
+	private HospedeController hospedeController;
 
 	/**
 	 * Launch the application.
@@ -46,7 +53,7 @@ public class RegistroHospede extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					RegistroHospede frame = new RegistroHospede();
+					RegistroHospede frame = new RegistroHospede(0);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -57,8 +64,12 @@ public class RegistroHospede extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param integer 
+	 * @param integer 
 	 */
-	public RegistroHospede() {
+	public RegistroHospede(Integer id) {
+		super("Hospede");
+		hospedeController = new HospedeController();
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegistroHospede.class.getResource("/imagenes/lOGO-50PX.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -241,6 +252,7 @@ public class RegistroHospede extends JFrame {
 		txtNreserva.setColumns(10);
 		txtNreserva.setBackground(Color.WHITE);
 		txtNreserva.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		txtNreserva.setText(id.toString());
 		contentPane.add(txtNreserva);
 		
 		JSeparator separator_1_2 = new JSeparator();
@@ -284,6 +296,13 @@ public class RegistroHospede extends JFrame {
 		btnsalvar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				salvarHospede();
+/*				if (RegistroHospede.txtNome.getText() != null && RegistroHospede.txtSobrenome.getText() != null && RegistroHospede.txtTelefone.getText() != null 
+						&& RegistroHospede.txtNreserva.getText() != null && RegistroHospede.txtDataN.getDate() != null) {
+					salvarHospede();
+				} else {
+					JOptionPane.showMessageDialog(null, "Deve preencher todos os campos.");
+				}*/
 			}
 		});
 		btnsalvar.setLayout(null);
@@ -314,7 +333,29 @@ public class RegistroHospede extends JFrame {
 		panel.add(logo);
 		logo.setIcon(new ImageIcon(RegistroHospede.class.getResource("/imagenes/Ha-100px.png")));
 	}
+
+	private JTextField JLable(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
+	public void salvarHospede() {
+        String dataNascimento = ((JTextField) txtDataN.getDateEditor().getUiComponent()).getText();
+        Hospede novoHospede = new Hospede(
+        		txtNome.getText(), 
+        		txtSobrenome.getText(),
+        		java.sql.Date.valueOf(dataNascimento),
+        		txtNacionalidade.getSelectedItem().toString(),
+        		txtTelefone.getText(),
+        		Integer.parseInt(txtNreserva.getText())
+        		);
+
+        hospedeController.salvar(novoHospede);
+        Sucesso sucesso = new Sucesso();
+        sucesso.setVisible(true);
+        dispose();
+    }
+
 	//Código que permite movimentar a janela pela tela seguindo a posição de "x" y "y"
 	 private void headerMousePressed(java.awt.event.MouseEvent evt) {
 	        xMouse = evt.getX();
@@ -325,6 +366,6 @@ public class RegistroHospede extends JFrame {
 	        int x = evt.getXOnScreen();
 	        int y = evt.getYOnScreen();
 	        this.setLocation(x - xMouse, y - yMouse);
-}
+	    }
 											
 }
