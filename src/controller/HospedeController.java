@@ -25,8 +25,8 @@ public class HospedeController {
     	return this.hospedeDAO.listar();
     }
     
-    public void buscarSobrenome(String sobrenome) {
-    	this.hospedeDAO.buscarSobrenome(sobrenome);
+    public List<Hospede> buscarSobrenome(String sobrenome) {
+    	return this.hospedeDAO.buscarSobrenome(sobrenome);
     }
     
     public void editar(String nome, String sobrenome, Date dataNascimento, String nacionalidade, String telefone) {

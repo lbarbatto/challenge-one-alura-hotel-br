@@ -224,7 +224,36 @@ public class Buscar extends JFrame {
 		btnbuscar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
+				String entrada = txtBuscar.getText();
+				entrada = entrada.replaceAll("[^a-zA-Z0-9]", "");
+				switch(validaBusca(entrada)) {
+					case 0:						
+						// code block
+						JOptionPane.showMessageDialog(null, "Insira um ID de Reserva ou um Sobrenome válido.");
+						break;
+					case 1:
+						// code block
+						if (panel.getSelectedIndex() == 0) {
+							buscarId(Integer.parseInt(entrada));
+						} else {
+					  	break;
+						}
+					case 2:
+						// code block
+						if (panel.getSelectedIndex() == 1) {
+							buscarSobrenome(entrada);
+						} else {
+						break;
+						}
+				}
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) { // Quando o usuário passa o mouse sobre o botão, ele muda de cor
+				btnbuscar.setBackground(Color.blue);
+			}			
+			@Override
+			public void mouseExited(MouseEvent e) { //Quando o usuário remove o mouse do botão, ele retornará ao estado original
+				btnbuscar.setBackground(new Color(12, 138, 199));
 			}
 		});
 		btnbuscar.setLayout(null);
@@ -272,7 +301,6 @@ public class Buscar extends JFrame {
 		btnDeletar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println(panel.getSelectedIndex());
 				if (panel.getSelectedIndex() == 0) {
 					deletarReserva();
 					limparTabelaReservas();
@@ -310,6 +338,30 @@ public class Buscar extends JFrame {
 	private void preencherTabelaHospedes() {
 		List<Hospede> hospedes = listarHospedes();
 		try {
+			for (Hospede hospede : hospedes) {
+				modeloHospedes.addRow(new Object[] { hospede.getId(), hospede.getNome(), hospede.getSobrenome(), hospede.getDataNascimento(), hospede.getNacionalidade(), hospede.getTelefone(), hospede.getIdReserva() });
+			}
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+	
+	public void buscarId(Integer id) {
+		List<Reserva> reservas = this.reservaController.buscarId(id);
+		try {
+			limparTabelaReservas();
+			for (Reserva reserva : reservas) {
+				modelo.addRow(new Object[] { reserva.getId(), reserva.getDataEntrada(), reserva.getDataSaida(), reserva.getValor(), reserva.getFormaPagamento() });
+			}
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+	
+	public void buscarSobrenome(String sobrenome) {
+		List<Hospede> hospedes = this.hospedeController.buscarSobrenome(sobrenome);
+		try {
+			limparTabelaHospedes();
 			for (Hospede hospede : hospedes) {
 				modeloHospedes.addRow(new Object[] { hospede.getId(), hospede.getNome(), hospede.getSobrenome(), hospede.getDataNascimento(), hospede.getNacionalidade(), hospede.getTelefone(), hospede.getIdReserva() });
 			}
@@ -361,6 +413,18 @@ public class Buscar extends JFrame {
 		modeloHospedes.getDataVector().clear();
 	}
 	
+	public static Integer validaBusca(String entrada) {
+		if (entrada.isBlank()) {
+			return 0;
+		}
+		if(entrada.matches("[0-9]*")) {
+			return 1;
+		}
+		if(entrada.matches("[a-zA-Z]*")) {
+			return 2;
+		}
+		return null;
+	}
 	
 	//Código que permite movimentar a janela pela tela seguindo a posição de "x" e "y"	
 	 private void headerMousePressed(java.awt.event.MouseEvent evt) {

@@ -74,7 +74,7 @@ public class HospedeDAO {
 
 			try (PreparedStatement pstm = connection.prepareStatement(sql)) {
 				pstm.setString(1, sobrenome);
-				pstm.executeUpdate();
+				pstm.execute();
 
 				try (ResultSet rst = pstm.getResultSet()) {
 					while (rst.next()) {

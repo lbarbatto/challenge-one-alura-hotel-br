@@ -25,8 +25,8 @@ public class ReservaController {
 		return this.reservaDAO.listar();
 	}
 	
-	public void buscarId(Integer id) {
-		this.reservaDAO.buscarId(id);
+	public List<Reserva> buscarId(Integer id) {
+		return this.reservaDAO.buscarId(id);
 	}
 	
 	public void editar(Date dataE, Date dataS, String valor, String formPagamento, Integer id) {

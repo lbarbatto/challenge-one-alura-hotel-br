@@ -72,7 +72,7 @@ public class ReservaDAO {
 
 			try (PreparedStatement pstm = connection.prepareStatement(sql)) {
 				pstm.setInt(1, id);
-				pstm.executeUpdate();
+				pstm.execute();
 
 				try (ResultSet rst = pstm.getResultSet()) {
 					while (rst.next()) {
