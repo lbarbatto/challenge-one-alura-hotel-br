@@ -281,6 +281,85 @@ Clique na opção para aceitar os Termos de Uso, e para concluir clique em <em>F
 
 6) Não se esqueça de colocar um link ou vídeo de seu projeto no Linkedin! Marque com a #Oracle #AluraLatam 🏁
 
+## 🖥️ Resultado
+
+### Tela Principal com link para tela de Login: 
+
+<p align="center" >
+     <img width="700" heigth="700" src="https://github.com/lbarbatto/challenge-one-alura-hotel-br/blob/repositorio-base/source/telas/001.png">
+</p>
+
+<p align="center" >
+     <img width="700" heigth="700" src="https://github.com/lbarbatto/challenge-one-alura-hotel-br/blob/repositorio-base/source/telas/002.png">
+</p>
+
+### Tela de Login com validador de usuário: 
+
+<p align="center" >
+     <img width="700" heigth="700" src="https://github.com/lbarbatto/challenge-one-alura-hotel-br/blob/repositorio-base/source/telas/003.png">
+</p>
+
+### Tela de Usuário com link para tela de Registro de Reservas e Tela de Buscas: 
+
+<p align="center" >
+     <img width="700" heigth="700" src="https://github.com/lbarbatto/challenge-one-alura-hotel-br/blob/repositorio-base/source/telas/004.png">
+</p>
+
+### Tela do Sistema de Reservas que cria e relaciona o ID da Reserva com um hóspede: 
+
+<p align="center" >
+     <img width="700" heigth="700" src="https://github.com/lbarbatto/challenge-one-alura-hotel-br/blob/repositorio-base/source/telas/005.png">
+</p>
+
+<p align="center" >
+     <img width="700" heigth="700" src="https://github.com/lbarbatto/challenge-one-alura-hotel-br/blob/repositorio-base/source/telas/006.png">
+</p>
+
+### Tela do Sistema de Registro de Hóspedes com o ID da Reserva já inserido: 
+
+<p align="center" >
+     <img width="700" heigth="700" src="https://github.com/lbarbatto/challenge-one-alura-hotel-br/blob/repositorio-base/source/telas/007.png">
+</p>
+
+<p align="center" >
+     <img width="700" heigth="700" src="https://github.com/lbarbatto/challenge-one-alura-hotel-br/blob/repositorio-base/source/telas/008.png">
+</p>
+
+### Tela do Sistema de Buscas de Reservas e de Hóspedes através ID da Reserva ou Sobrenome do Hóspede: 
+
+<p align="center" >
+     <img width="700" heigth="700" src="https://github.com/lbarbatto/challenge-one-alura-hotel-br/blob/repositorio-base/source/telas/009.png">
+</p>
+
+<p align="center" >
+     <img width="700" heigth="700" src="https://github.com/lbarbatto/challenge-one-alura-hotel-br/blob/repositorio-base/source/telas/010.png">
+</p>
+
+<p align="center" >
+     <img width="700" heigth="700" src="https://github.com/lbarbatto/challenge-one-alura-hotel-br/blob/repositorio-base/source/telas/011.png">
+</p>
+
+<p align="center" >
+     <img width="700" heigth="700" src="https://github.com/lbarbatto/challenge-one-alura-hotel-br/blob/repositorio-base/source/telas/012.png">
+</p>
+
+### Botão para Deletar o registro da Reservas e do respectivo Hóspede e Botão para Editar os campos: 
+
+<p align="center" >
+     <img width="700" heigth="700" src="https://github.com/lbarbatto/challenge-one-alura-hotel-br/blob/repositorio-base/source/telas/013.png">
+</p>
+
+<p align="center" >
+     <img width="700" heigth="700" src="https://github.com/lbarbatto/challenge-one-alura-hotel-br/blob/repositorio-base/source/telas/014.png">
+</p>
+
+<p align="center" >
+     <img width="700" heigth="700" src="https://github.com/lbarbatto/challenge-one-alura-hotel-br/blob/repositorio-base/source/telas/015.png">
+</p>
+
+❤️ <strong>Leopoldo Barbato</strong></br>
+<a href="https://www.linkedin.com/in/leopoldo-barbato/" target="_blank">
+<img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
 
 🧡 <strong>Oracle</strong></br>
 <a href="https://www.linkedin.com/company/oracle/" target="_blank">
