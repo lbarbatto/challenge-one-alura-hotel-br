@@ -29,6 +29,7 @@ import javax.swing.ListSelectionModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.sql.Date;
 import java.util.List;
 
 @SuppressWarnings("serial")
@@ -283,6 +284,30 @@ public class Buscar extends JFrame {
 		lblEditar.setBounds(0, 0, 122, 35);
 		btnEditar.add(lblEditar);
 		
+		btnEditar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (panel.getSelectedIndex() == 0) {
+					editarReserva();
+					limparTabelaReservas();
+					preencherTabelaReservas();
+				} 
+				if (panel.getSelectedIndex() == 1) {
+					editarHospede();
+					limparTabelaHospedes();
+					preencherTabelaHospedes();
+				}
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) { // Quando o usuário passa o mouse sobre o botão, ele muda de cor
+				btnEditar.setBackground(Color.blue);
+			}			
+			@Override
+			public void mouseExited(MouseEvent e) { //Quando o usuário remove o mouse do botão, ele retornará ao estado original
+				btnEditar.setBackground(new Color(12, 138, 199));
+			}
+		});
+		
 		JPanel btnDeletar = new JPanel();
 		btnDeletar.setLayout(null);
 		btnDeletar.setBackground(new Color(12, 138, 199));
@@ -376,6 +401,35 @@ public class Buscar extends JFrame {
 	
 	public List<Hospede> listarHospedes(){
 		return this.hospedeController.listar();
+	}
+	
+	private void editarReserva() {
+		Object objetoDaLinha = (Object) modelo.getValueAt(tbReservas.getSelectedRow(), tbReservas.getSelectedColumn());
+		if (objetoDaLinha instanceof Integer) {
+			Integer id = (Integer) objetoDaLinha;
+			Date dataE = (Date) modelo.getValueAt(tbReservas.getSelectedRow(), 1);
+			Date dataS = (Date) modelo.getValueAt(tbReservas.getSelectedRow(), 2);
+			this.reservaController.editar(id, dataE, dataS);
+			JOptionPane.showMessageDialog(this, "Item editado com sucesso!");
+		} else {
+			JOptionPane.showMessageDialog(this, "Por favor, selecionar o ID");
+		}
+	}
+	
+	private void editarHospede() {
+		Object objetoDaLinha = (Object) modeloHospedes.getValueAt(tbHospedes.getSelectedRow(), tbHospedes.getSelectedColumn());
+		if (objetoDaLinha instanceof Integer) {
+			Integer id = (Integer) objetoDaLinha;
+			String nome = (String) modeloHospedes.getValueAt(tbHospedes.getSelectedRow(), 1);
+			String sobrenome = (String) modeloHospedes.getValueAt(tbHospedes.getSelectedRow(), 2);
+			Date dataNascimento = (Date) modeloHospedes.getValueAt(tbHospedes.getSelectedRow(), 3);
+			String nacionalidade = (String) modeloHospedes.getValueAt(tbHospedes.getSelectedRow(), 4);
+			String telefone = (String) modeloHospedes.getValueAt(tbHospedes.getSelectedRow(), 5);
+			this.hospedeController.editar(id, nome, sobrenome, dataNascimento, nacionalidade, telefone);
+			JOptionPane.showMessageDialog(this, "Item editado com sucesso!");
+		} else {
+			JOptionPane.showMessageDialog(this, "Por favor, selecionar o ID");
+		}
 	}
 	
 	private void deletarReserva() {

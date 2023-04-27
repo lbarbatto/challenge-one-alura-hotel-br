@@ -29,8 +29,8 @@ public class HospedeController {
     	return this.hospedeDAO.buscarSobrenome(sobrenome);
     }
     
-    public void editar(String nome, String sobrenome, Date dataNascimento, String nacionalidade, String telefone) {
-    	this.hospedeDAO.editar(nome, sobrenome, dataNascimento, nacionalidade, telefone);
+    public void editar(Integer id, String nome, String sobrenome, Date dataNascimento, String nacionalidade, String telefone) {
+    	this.hospedeDAO.editar(id, nome, sobrenome, dataNascimento, nacionalidade, telefone);
     }
     
     public void deletar(Integer id) {

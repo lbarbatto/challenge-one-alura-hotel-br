@@ -29,8 +29,8 @@ public class ReservaController {
 		return this.reservaDAO.buscarId(id);
 	}
 	
-	public void editar(Date dataE, Date dataS, String valor, String formPagamento, Integer id) {
-		this.reservaDAO.editar(dataE, dataS, valor, formPagamento, id);
+	public void editar(Integer id, Date dataE, Date dataS) {
+		this.reservaDAO.editar(id, dataE, dataS);
 	}
 	
 	public void deletar(Integer id) {

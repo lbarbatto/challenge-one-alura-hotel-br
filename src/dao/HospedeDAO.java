@@ -90,15 +90,15 @@ public class HospedeDAO {
 		}
 	}
 	
-	public void editar(String nome, String sobrenome, Date dataNascimento, String nacionalidade, String telefone) {
+	public void editar(Integer id, String nome, String sobrenome, Date dataNascimento, String nacionalidade, String telefone) {
 		try (PreparedStatement stm = connection
-				.prepareStatement("UPDATE HOSPEDES H SET H.NOME = ?, P.SOBRENOME = ?, P.DATA_NASCIMENTO = ?, P.NACIONALIDADE = ?, P.TELEFONE = ? WHERE ID = ?")) {
+				.prepareStatement("UPDATE HOSPEDES H SET H.NOME = ?, H.SOBRENOME = ?, H.DATA_NASCIMENTO = ?, H.NACIONALIDADE = ?, H.TELEFONE = ? WHERE ID = ?")) {
 			stm.setString(1, nome);
 			stm.setString(2, sobrenome);
 			stm.setDate(3, dataNascimento);
 			stm.setString(4, nacionalidade);
 			stm.setString(5, telefone);
-			
+	        stm.setInt(6, id);
 			stm.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

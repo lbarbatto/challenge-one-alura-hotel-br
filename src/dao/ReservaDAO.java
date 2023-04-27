@@ -88,14 +88,12 @@ public class ReservaDAO {
 		}
 	}
 	
-	public void editar(Date dataE, Date dataS, String valor, String formPagamento, Integer id) {
+	public void editar(Integer id, Date dataE, Date dataS) {
 		try (PreparedStatement stm = connection
-				.prepareStatement("UPDATE reservas R SET R.data_entrada = ?, R.data_saida = ?, valor = ?, forma_pagamento = ? WHERE id = ?")) {
+				.prepareStatement("UPDATE RESERVAS R SET R.DATA_ENTRADA = ?, R.DATA_SAIDA = ? WHERE id = ?")) {
 			stm.setDate(1, dataE);
             stm.setDate(2, dataS);
-            stm.setString(3, valor);
-            stm.setString(4, formPagamento);
-            stm.setInt(5, id);
+            stm.setInt(3, id);
 			stm.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
